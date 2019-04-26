@@ -6,7 +6,7 @@ namespace MVC_FiltersAndHelpers.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public void Index()
         {
             RequestFilter(Request.UserAgent, View());
         }
@@ -24,7 +24,7 @@ namespace MVC_FiltersAndHelpers.Controllers
             }
             else
             {
-                return view();
+                return view;
             }
         }
     }
