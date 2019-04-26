@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MVC_FiltersAndHelpers.Models;
+using MVC_FiltersAndHelpers.Models.Filters;
 using System.Web.Mvc;
 
 namespace MVC_FiltersAndHelpers.Controllers
@@ -10,21 +8,24 @@ namespace MVC_FiltersAndHelpers.Controllers
     {
         public ActionResult Index()
         {
+            RequestFilter(Request.UserAgent, View());
+        }
+
+        public ActionResult Unauthorized()
+        {
             return View();
         }
 
-        public ActionResult About()
+        private ActionResult RequestFilter(string userAgent, ViewResult view)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            if(userAgent == "googlebot")
+            {
+                return RedirectToAction("Unauthorized");
+            }
+            else
+            {
+                return view();
+            }
         }
     }
 }

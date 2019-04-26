@@ -20,6 +20,8 @@ namespace MVC_FiltersAndHelpers.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<ActionLog> ActionLogs { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
